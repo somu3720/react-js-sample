@@ -3,7 +3,7 @@ pipeline{
   
   environment{
     SSH_USER = "azureuser"
-    SSH_HOST = "20.55.79.184"
+    SSH_HOST = "52.146.92.195"
     //SSH_KNOWN_HOSTS = ""
     DESTINATION_FOLDER = "var/www/html"
     BACKUP_FOLDER = "/home/azureuser/backup/"
@@ -36,7 +36,7 @@ pipeline{
             
             
             sh 'ssh azureuser@52.146.92.195'
-            sh 'service nginx status'
+            
             
        
             }catch(e){
@@ -50,7 +50,7 @@ pipeline{
         script{
           try{
             sh 'echo "Deployment started"'
-            
+            sh 'service nginx status'
             sh "scp -r build/* ${SSH_USER}@${SSH_HOST}:${DESTINATION_FOLDER}"
             
             }catch(e){
