@@ -51,7 +51,7 @@ pipeline{
           try{
             sh 'echo "Deployment started"'
             
-            sh "scp -r build/* azureuser@20.55.79.184:${DESTINATION_FOLDER}"
+            sh "scp -r build/* ${SSH_USER}@${SSH_HOST}:${DESTINATION_FOLDER}"
             
             }catch(e){
               sh 'echo "Build failed: $(e.message)"'
