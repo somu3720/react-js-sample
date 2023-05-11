@@ -35,8 +35,8 @@ pipeline{
             //sh "rm -rf *tar.gz"
             
             
-            sh 'service nginx status'
             sh 'ssh azureuser@52.146.92.195'
+            sh 'service nginx status'
             
        
             }catch(e){
