@@ -14,7 +14,7 @@ pipeline{
         }
       }
     }
-    stage('Deploy){
+    stage('Deploy'){
       steps{
         script{
           try{
