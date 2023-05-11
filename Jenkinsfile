@@ -7,7 +7,7 @@ pipeline{
         sh 'npm install'
         sh 'npm run build'
         }catch(e){
-          echo "Build failed: $(e)"
+          sh 'echo "Build failed: $(e)"'
         }
       }
     }
