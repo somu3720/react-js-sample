@@ -5,7 +5,7 @@ pipeline{
     SSH_USER = "deployserver"
     SSH_HOST = "20.127.193.201"
     //SSH_KNOWN_HOSTS = ""
-    DESTINATION_FOLDER = "var/www/html"
+    DESTINATION_FOLDER = "/usr/share/nginx/html"
     BACKUP_FOLDER = "/home/azureuser/backup/"
     ROLLBACK_FOLDER = "/home/azureuser/rollback"
   }  
