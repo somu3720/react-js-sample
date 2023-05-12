@@ -2,8 +2,8 @@ pipeline{
   agent any
   
   environment{
-    SSH_USER = "azureuser"
-    SSH_HOST = "52.146.92.195"
+    SSH_USER = "deployserver"
+    SSH_HOST = "20.127.193.201"
     //SSH_KNOWN_HOSTS = ""
     DESTINATION_FOLDER = "var/www/html"
     BACKUP_FOLDER = "/home/azureuser/backup/"
@@ -51,7 +51,7 @@ pipeline{
           try{
             sh 'echo "Deployment started"'
             sh 'service nginx status'
-            sh "scp -r build/* ${SSH_USER}@${SSH_HOST}:${DESTINATION_FOLDER}"
+            sh "sshpass -p Deployserver@1 scp -r build/* ${SSH_USER}@${SSH_HOST}:${DESTINATION_FOLDER}"
             
             }catch(e){
               sh 'echo "Build failed: $(e.message)"'
