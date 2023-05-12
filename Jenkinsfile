@@ -55,8 +55,8 @@ pipeline{
             
             }catch(e){
               sh 'echo "Build failed: $(e.message)"'
-              sh 'echo "Rollback started"'
-              sh "mv ${BACKUP_FOLDER} ${ROLLBACK_FOLDER} && mv ${ROLLBACK_FOLDER} ${DESTINATION_FOLDER}"
+              //sh 'echo "Rollback started"'
+              //sh "mv ${BACKUP_FOLDER} ${ROLLBACK_FOLDER} && mv ${ROLLBACK_FOLDER} ${DESTINATION_FOLDER}"
             }
         }
       }
