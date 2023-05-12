@@ -35,7 +35,7 @@ pipeline{
             //sh "rm -rf *tar.gz"
             
             
-            sh 'ssh azureuser@52.146.92.195'
+            //sh 'ssh azureuser@52.146.92.195'
             
             
        
@@ -50,7 +50,7 @@ pipeline{
         script{
           try{
             sh 'echo "Deployment started"'
-            sh 'service nginx status'
+            //sh 'service nginx status'
             sh "sshpass -p Deployserver@1 scp -r build/* ${SSH_USER}@${SSH_HOST}:${DESTINATION_FOLDER}"
             
             }catch(e){
