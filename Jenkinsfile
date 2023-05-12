@@ -31,7 +31,7 @@ pipeline{
             //sh "mkdir -p ${BACKUP_FOLDER} && test -d ${BACKUP_FOLDER}
             //sh "mkdir -p ${ROLLBACK_FOLDER} && test -d ${ROLLBACK_FOLDER}
             //sh "tar -czvf build_$BUILD_NUMBER.tar.gz *"
-            sh "mv build/* ${BACKUP_FOLDER}"
+            //sh "mv build/* ${BACKUP_FOLDER}"
             //sh "rm -rf *tar.gz"
             
             
