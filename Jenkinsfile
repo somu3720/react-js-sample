@@ -51,7 +51,7 @@ pipeline{
           try{
             sh 'echo "Deployment started"'
             //sh 'service nginx status'
-            sh "sshpass -p Deployserver@1 scp -r build/* ${SSH_USER}@${SSH_HOST}:${DESTINATION_FOLDER}"
+            sh "sshpass -p Deployserver@1 scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${DESTINATION_FOLDER}"
             
             }catch(e){
               sh 'echo "Build failed: $(e.message)"'
