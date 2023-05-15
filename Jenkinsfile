@@ -55,7 +55,7 @@ pipeline{
             sh 'mkdir ${BACKUP_FOLDER}'
             
             
-            sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${BACKUP_FOLDER}"
+            sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${DESTINATION_FOLDER}"
             
             }catch(e){
               sh 'echo "Build failed: $(e.message)"'
