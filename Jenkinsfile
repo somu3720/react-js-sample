@@ -50,9 +50,10 @@ pipeline{
         script{
           try{
             sh 'echo "Deployment started"'
-            //sh 'service nginx status'
+            
             sh "ssh '${SSH_USER}@${SSH_HOST}'"
-            sh 'mkdir ${BACKUP_FOLDER}'
+            sh 'service nginx status'
+            //sh 'mkdir ${BACKUP_FOLDER}'
             
             
             sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${DESTINATION_FOLDER}"
