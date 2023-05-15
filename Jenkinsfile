@@ -6,8 +6,8 @@ pipeline{
     SSH_HOST = "20.127.193.201"
     //SSH_KNOWN_HOSTS = ""
     DESTINATION_FOLDER = "/var/www/html"
-    BACKUP_FOLDER = "/home/deployserver/backup/"
-    ROLLBACK_FOLDER = "/home/deployserver/rollback"
+    BACKUP_FOLDER = "backup"
+    ROLLBACK_FOLDER = "rollback"
   }  
   
   stages{
@@ -31,7 +31,9 @@ pipeline{
             //sh "mkdir -p ${BACKUP_FOLDER} && test -d ${BACKUP_FOLDER}
             //sh "mkdir -p ${ROLLBACK_FOLDER} && test -d ${ROLLBACK_FOLDER}
             //sh "tar -czvf build_$BUILD_NUMBER.tar.gz *"
-            //sh "mv build/* ${BACKUP_FOLDER}"
+            sh "ssh '${SSH_USER}@${SSH_HOST}'"
+            sh 'service nginx status'
+            sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${BACKUP_FOLDER}"
             //sh "rm -rf *tar.gz"
             
             
@@ -51,8 +53,7 @@ pipeline{
           try{
             sh 'echo "Deployment started"'
             
-            sh "ssh '${SSH_USER}@${SSH_HOST}'"
-            sh 'service nginx status'
+            
             //sh 'mkdir ${BACKUP_FOLDER}'
             
             
@@ -60,8 +61,8 @@ pipeline{
             
             }catch(e){
               sh 'echo "Build failed: $(e.message)"'
-              //sh 'echo "Rollback started"'
-              //sh "mv ${BACKUP_FOLDER} ${ROLLBACK_FOLDER} && mv ${ROLLBACK_FOLDER} ${DESTINATION_FOLDER}"
+              sh 'echo "Rollback started"'
+              sh "mv ${BACKUP_FOLDER} ${ROLLBACK_FOLDER} && mv ${ROLLBACK_FOLDER} ${DESTINATION_FOLDER}"
             }
         }
       }
