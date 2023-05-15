@@ -6,8 +6,8 @@ pipeline{
     SSH_HOST = "20.127.193.201"
     //SSH_KNOWN_HOSTS = ""
     DESTINATION_FOLDER = "/var/www/html"
-    BACKUP_FOLDER = "/home/azureuser/backup/"
-    ROLLBACK_FOLDER = "/home/azureuser/rollback"
+    BACKUP_FOLDER = "/home/deployserver/backup/"
+    ROLLBACK_FOLDER = "/home/deployserver/rollback"
   }  
   
   stages{
@@ -51,7 +51,11 @@ pipeline{
           try{
             sh 'echo "Deployment started"'
             //sh 'service nginx status'
-            sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${DESTINATION_FOLDER}"
+            sh "ssh '${SSH_USER}@${SSH_HOST}'"
+            sh 'mkdir ${BACKUP_FOLDER}'
+            
+            
+            sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${BACKUP_FOLDER}"
             
             }catch(e){
               sh 'echo "Build failed: $(e.message)"'
