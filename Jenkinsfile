@@ -20,7 +20,8 @@ pipeline{
         script{
           try{
             sh 'echo "Build started"'
-            //sh 'npm run build'
+            sh 'npm run build'
+            sh 'echo "Build Ended"'
             }catch(e){
               sh 'echo "Build failed: $(e.message)"'
             }
@@ -47,22 +48,14 @@ pipeline{
       steps{
         script{
           try{
-            //sh "mkdir -p ${DESTINATION_FOLDER} && test -d ${DESTINATION_FOLDER}"
-            //sh "mkdir -p ${BACKUP_FOLDER} && test -d ${BACKUP_FOLDER}
-            //sh "mkdir -p ${ROLLBACK_FOLDER} && test -d ${ROLLBACK_FOLDER}
             //sh "tar -czvf build_$BUILD_NUMBER.tar.gz *"
+            sh 'echo "Ssh Login started"'
             sh "ssh '${SSH_USER}@${SSH_HOST}'"
             sh 'service nginx status'
             sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${BACKUP_FOLDER}"
             //sh "rm -rf *tar.gz"
-            
-            
-            //sh 'ssh azureuser@52.146.92.195'
-            
-            
-       
             }catch(e){
-              sh 'echo "Build failed: $(e.message)"'
+              sh 'echo "Pre Deployment failed: $(e.message)"'
             }
         }
       }
