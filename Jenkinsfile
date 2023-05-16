@@ -8,6 +8,10 @@ pipeline{
     DESTINATION_FOLDER = "/var/www/html"
     BACKUP_FOLDER = "backup"
     ROLLBACK_FOLDER = "rollback"
+    
+    SONAR_PROJECT_KEY = "ri_frontend"
+    SONAR_HOST = "https://sonarqube.mydrreddys.com"
+    SONAR_KEY = "91f262086d32d33838c731a39683712c6343d056"
   }  
   
   stages{
@@ -23,6 +27,22 @@ pipeline{
         }
       }
     }
+    //stage('Sonar Analysis'){
+      //steps{
+        //script{
+          //try{
+            //withSonarQubeEnv('SonarQube'){
+              //sh 'sonar-scanner Dsonar.projectkey=${SONAR_PROJECT_KEY} Dsonar.sources=. Dsonar.host.url=${SONAR_HOST_URL} Dsonar.login=${SONAR_KEY}'
+            //}
+            //timeout(time: 1, unit: 'Hours'){
+              //waitforquQualityGate abortPipeline: true
+            //}
+            //}catch(e){
+              //sh 'echo "Build failed: $(e.message)"'
+            //}
+        //}
+      //}
+    //}
     stage('Pre Deploy'){
       steps{
         script{
