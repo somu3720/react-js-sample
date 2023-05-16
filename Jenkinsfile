@@ -20,7 +20,7 @@ pipeline{
         script{
           try{
             sh 'echo "Build started"'
-            sh 'npm run build'
+            //sh 'npm run build'
             }catch(e){
               sh 'echo "Build failed: $(e.message)"'
             }
