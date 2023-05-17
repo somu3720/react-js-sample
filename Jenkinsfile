@@ -15,7 +15,7 @@ pipeline{
   }  */
   
   stages{
-    stage('Build'){
+    stage('Example'){
       steps{
         script{
           try{
