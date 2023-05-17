@@ -1,7 +1,7 @@
 pipeline{
   agent any
   
-  environment{
+ /* environment{
     SSH_USER = "deployserver"
     SSH_HOST = "20.127.193.201"
     //SSH_KNOWN_HOSTS = ""
@@ -12,7 +12,7 @@ pipeline{
     SONAR_PROJECT_KEY = "ri_frontend"
     SONAR_HOST = "https://sonarqube.mydrreddys.com"
     SONAR_KEY = "91f262086d32d33838c731a39683712c6343d056"
-  }  
+  }  */
   
   stages{
     stage('Build'){
