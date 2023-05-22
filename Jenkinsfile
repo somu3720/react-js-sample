@@ -2,12 +2,12 @@ pipeline{
   agent any
   
  environment{
-    SSH_USER = "deployserver"
-    SSH_HOST = "20.127.193.201"
+    SSH_USER = "deploy_jenkins"//"deployserver"
+    SSH_HOST = "40.76.244.235"//"20.127.193.201"
     //SSH_KNOWN_HOSTS = ""
     DESTINATION_FOLDER = "/var/www/html"
-    BACKUP_FOLDER = "backup"
-    ROLLBACK_FOLDER = "rollback"
+    BACKUP_FOLDER = "backup_RI"
+    //ROLLBACK_FOLDER = "rollback"
     
     SONAR_PROJECT_KEY = "ri_frontend"
     SONAR_HOST = "https://sonarqube.mydrreddys.com"
