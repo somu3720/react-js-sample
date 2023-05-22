@@ -35,7 +35,6 @@ pipeline {
               try {
                 sh 'echo "Ssh Login started"'
                 sh "ssh '${SSH_USER}@${SSH_HOST}'"
-                sh 'systemctl status nginx'
                 sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${BACKUP_FOLDER}"
               } catch (e) {
                 sh 'echo "Pre Deployment failed: $(e.message)"'
