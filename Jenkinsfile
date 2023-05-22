@@ -51,7 +51,7 @@ pipeline{
             //sh "tar -czvf build_$BUILD_NUMBER.tar.gz *"
             sh 'echo "Ssh Login started"'
             sh "ssh '${SSH_USER}@${SSH_HOST}'"
-            sh 'service nginx status'
+            sh "service nginx status"
    //         sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${BACKUP_FOLDER}"
             //sh "rm -rf *tar.gz"
             }catch(e){
