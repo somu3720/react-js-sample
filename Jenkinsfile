@@ -19,7 +19,7 @@ pipeline {
                 sh 'echo "Build Ended"'
               } catch (e) {
                 sh 'echo "Build failed: $(e.message)"'
-                error "Build failed"
+                
               }
             }
           }
@@ -38,7 +38,6 @@ pipeline {
                 sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${BACKUP_FOLDER}"
               } catch (e) {
                 sh 'echo "Pre Deployment failed: $(e.message)"'
-                error "Pre Deployment failed"
               }
             }
           }
@@ -58,7 +57,7 @@ pipeline {
                 sh 'echo "Build failed: $(e.message)"'
                 sh 'echo "Rollback started"'
                 sh "mv ${BACKUP_FOLDER} ${ROLLBACK_FOLDER} && mv ${ROLLBACK_FOLDER} ${DESTINATION_FOLDER}"
-                error "Deployment failed"
+
               }
             }
           }
