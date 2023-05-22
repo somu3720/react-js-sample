@@ -1,18 +1,18 @@
 pipeline{
   agent any
   
-  environment{
-    SSH_USER = "deploy_jenkins"
-    SSH_HOST = "40.76.244.235"
+ environment{
+    SSH_USER = "deploy_jenkins"//"deployserver"
+    SSH_HOST = "40.76.244.235"//"20.127.193.201"
     //SSH_KNOWN_HOSTS = ""
     DESTINATION_FOLDER = "/var/www/html"
     BACKUP_FOLDER = "backup_RI"
- //   ROLLBACK_FOLDER = "rollback"
+    //ROLLBACK_FOLDER = "rollback"
     
     SONAR_PROJECT_KEY = "ri_frontend"
     SONAR_HOST = "https://sonarqube.mydrreddys.com"
     SONAR_KEY = "91f262086d32d33838c731a39683712c6343d056"
-  }  
+  } 
   
   stages{
     stage('Build'){
@@ -51,8 +51,8 @@ pipeline{
             //sh "tar -czvf build_$BUILD_NUMBER.tar.gz *"
             sh 'echo "Ssh Login started"'
             sh "ssh '${SSH_USER}@${SSH_HOST}'"
-            sh "service nginx status"
-   //         sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${BACKUP_FOLDER}"
+            sh 'service nginx status'
+            sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${BACKUP_FOLDER}"
             //sh "rm -rf *tar.gz"
             }catch(e){
               sh 'echo "Pre Deployment failed: $(e.message)"'
@@ -82,11 +82,11 @@ pipeline{
     }
   }
   post{
-      success{
-        sh 'echo success'
-      }
       failure{
         sh 'echo failure'
+      }
+      success{
+        sh 'echo success'
       }
     }
 }
