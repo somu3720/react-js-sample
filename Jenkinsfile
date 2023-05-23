@@ -3,10 +3,10 @@ pipeline {
   environment {
     SSH_USER = "deploy_jenkins"
     SSH_HOST = "40.76.244.235"
-    CURRENT_DATE = new Date().format("yyyy-MM-dd_HH-mm-ss")
-    DESTINATION_FOLDER = "/var/www/html/${CURRENT_DATE}"
-    BACKUP_FOLDER = "backup_RI/${CURRENT_DATE}"
-    ROLLBACK_FOLDER = "rollback_RI/${CURRENT_DATE}"
+ //   CURRENT_DATE = new Date().format("yyyy-MM-dd_HH-mm-ss")
+    DESTINATION_FOLDER = "/var/www/html/"
+    BACKUP_FOLDER = "backup_RI/"
+    ROLLBACK_FOLDER = "rollback_RI/"
   }
   
   stages {
