@@ -37,9 +37,9 @@ pipeline {
               try {
                 sh 'echo "Ssh Login started"'
                 sh "ssh '${SSH_USER}@${SSH_HOST}'"
-                sh "mkdir -p ${BACKUP_FOLDER}"
-                sh "mkdir -p ${DESTINATION_FOLDER}"
-                sh "mkdir -p ${ROLLBACK_FOLDER}"
+                sh "sudo mkdir -p ${BACKUP_FOLDER}"
+                sh "sudo mkdir -p ${DESTINATION_FOLDER}"
+                sh "sudo mkdir -p ${ROLLBACK_FOLDER}"
                 sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${BACKUP_FOLDER}"
               } catch (e) {
                 sh 'echo "Pre Deployment failed: $(e.message)"'
