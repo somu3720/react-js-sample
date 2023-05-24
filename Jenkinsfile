@@ -5,8 +5,8 @@ pipeline {
     SSH_HOST = "40.76.244.235"
  //   CURRENT_DATE = new Date().format("yyyy-MM-dd_HH-mm-ss")
     DESTINATION_FOLDER = "/var/www/example.com/html"
-    BACKUP_FOLDER = "backup_RI/"
-    ROLLBACK_FOLDER = "rollback_RI/"
+    BACKUP_FOLDER = "backup_RI"
+    ROLLBACK_FOLDER = "rollback_RI"
   }
   
   stages {
