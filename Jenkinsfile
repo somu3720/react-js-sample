@@ -2,7 +2,7 @@ pipeline{
   agent any
   
  environment{
-    SSH_USER = "deploy_jenkins"//"deployserver"
+    SSH_USER = "jenkins"//"deployserver"
     SSH_HOST = "40.76.244.235"//"20.127.193.201"
     //SSH_KNOWN_HOSTS = ""
     DESTINATION_FOLDER = "/var/www/example.com/html"
