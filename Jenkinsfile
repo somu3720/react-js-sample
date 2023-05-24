@@ -1,8 +1,8 @@
 pipeline {
   agent any
   environment {
-    SSH_USER = "deploy_jenkins"
-    SSH_HOST = "40.76.244.235"
+    SSH_USER = "deploynginx"
+    SSH_HOST = "20.55.8.149"
  //   CURRENT_DATE = new Date().format("yyyy-MM-dd_HH-mm-ss")
     DESTINATION_FOLDER = "/var/www/example.com/html"
     BACKUP_FOLDER = "backup_RI"
