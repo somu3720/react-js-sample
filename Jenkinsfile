@@ -3,7 +3,7 @@ pipeline{
   
  environment{
     SSH_USER = "deploynginx"//"deployserver"
-    SSH_HOST = "40.76.244.235"//"20.127.193.201"
+    SSH_HOST = "20.55.8.149"//"20.127.193.201"
     //SSH_KNOWN_HOSTS = ""
     DESTINATION_FOLDER = "/var/www/example.com/html"
     BACKUP_FOLDER = "backup_RI"
