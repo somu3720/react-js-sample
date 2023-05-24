@@ -12,8 +12,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        retry(3) {
-          timeout(time: 1, unit: 'HOURS') {
+        
+          
             script {
               try {
                 sh 'echo "Build started"'
@@ -23,37 +23,32 @@ pipeline {
                 sh 'echo "Build failed: $(e.message)"'
                 
               }
-            }
-          }
+            
         }
       }
     }
     
     stage('Pre Deploy') {
       steps {
-        retry(3) {
-          timeout(time: 30, unit: 'MINUTES') {
+        
+          
             script {
               try {
                 sh 'echo "Ssh Login started"'
                 sh "ssh '${SSH_USER}@${SSH_HOST}'"
-                sh "sudo mkdir -p ${BACKUP_FOLDER}"
-                sh "sudo mkdir -p ${DESTINATION_FOLDER}"
-                sh "sudo mkdir -p ${ROLLBACK_FOLDER}"
                 sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${BACKUP_FOLDER}"
               } catch (e) {
                 sh 'echo "Pre Deployment failed: $(e.message)"'
               }
-            }
-          }
+            
+          
         }
       }
     }
     
     stage('Deploy') {
       steps {
-        retry(3) {
-          timeout(time: 1, unit: 'HOURS') {
+       
             script {
               try {
                 sh 'echo "Deployment started"'
@@ -62,9 +57,6 @@ pipeline {
                 sh 'echo "Build failed: $(e.message)"'
                 sh 'echo "Rollback started"'
                 sh "mv ${BACKUP_FOLDER} ${ROLLBACK_FOLDER} && mv ${ROLLBACK_FOLDER} ${DESTINATION_FOLDER}"
-
-              }
-            }
           }
         }
       }
