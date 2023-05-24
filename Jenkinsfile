@@ -20,6 +20,7 @@ pipeline{
         script{
           try{
             sh 'echo "Build started"'
+            sh 'whoami'
             sh 'npm run build'
             sh 'echo "Build Ended"'
             }catch(e){
@@ -51,6 +52,7 @@ pipeline{
             //sh "tar -czvf build_$BUILD_NUMBER.tar.gz *"
             sh 'echo "Ssh Login started"'
             sh "ssh '${SSH_USER}@${SSH_HOST}'"
+            sh 'whoami'
             sh 'systemctl status nginx'
             sh "scp -o StrictHostKeyChecking=no -r build/* ${SSH_USER}@${SSH_HOST}:${BACKUP_FOLDER}"
             //sh "rm -rf *tar.gz"
